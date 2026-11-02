@@ -9,7 +9,7 @@
 
 AI agents don't fail gracefully. When an upstream tool returns truncated JSON, a `429 Too Many Requests`, or a 502 Bad Gateway, the agent doesn't back off — it retries. And retries. And retries. Burning tokens, burning time, and burning your budget on infinite retry loops that never change their arguments.
 
-We call this **"tool rot"**: the silent degradation of agent reliability when external tools fail in realistic ways. Unit tests with 200 OK responses don't catch it. Integration tests against a live MCP server don't catch it either, because they pass until they don't.
+We call this **"upstream degradation"**: the silent degradation of agent reliability when external tools fail in realistic ways. Unit tests with 200 OK responses don't catch it. Integration tests against a live MCP server don't catch it either, because they pass until they don't.
 
 `toolbreaker` is a chaos-engineering harness and circuit breaker for AI agent tools. You wrap your tool functions (sync or async), inject realistic faults, and watch your agent fail — before it fails in production.
 
