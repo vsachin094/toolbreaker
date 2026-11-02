@@ -3,12 +3,13 @@
 [![PyPI version](https://img.shields.io/pypi/v/toolbreaker.svg)](https://pypi.org/project/toolbreaker/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/vsachin094/toolbreaker/actions/workflows/ci.yml/badge.svg)](https://github.com/vsachin094/toolbreaker/actions/workflows/ci.yml)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
 
 ## Why this exists
 
 AI agents don't fail gracefully. When an upstream tool returns truncated JSON, a `429 Too Many Requests`, or a 502 Bad Gateway, the agent doesn't back off — it retries. And retries. And retries. Burning tokens, burning time, and burning your budget on infinite retry loops that never change their arguments.
 
-We call this "tool rot": the silent degradation of agent reliability when external tools fail in realistic ways. Unit tests with 200 OK responses don't catch it. Integration tests against a live MCP server don't catch it either, because they pass until they don't.
+We call this **"tool rot"**: the silent degradation of agent reliability when external tools fail in realistic ways. Unit tests with 200 OK responses don't catch it. Integration tests against a live MCP server don't catch it either, because they pass until they don't.
 
 `toolbreaker` is a chaos-engineering harness and circuit breaker for AI agent tools. You wrap your tool functions (sync or async), inject realistic faults, and watch your agent fail — before it fails in production.
 
@@ -57,7 +58,7 @@ def test_agent_handles_truncation(toolbreaker):
     harness = toolbreaker  # RotHarness, seeded from --toolbreaker-seed (default 42)
     wrapped_tool = harness.wrap(my_mcp_tool)
     result = wrapped_tool({"query": "users"})
-    assert "error" in result or result is not None
+    assert result is not None
 ```
 
 If a test fails with `AgentRetryLoopError`, pytest appends a reproduction line:
@@ -123,4 +124,4 @@ GitHub Actions runs `ruff check`, `ruff format --check`, and `pytest` on Python 
 
 ## License
 
-MIT.# toolbreaker
+MIT
