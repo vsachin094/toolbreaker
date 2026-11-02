@@ -1,10 +1,10 @@
-"""Tests for toolrot fault mutators."""
+"""Tests for toolbreaker fault mutators."""
 
 import json
 
 import pytest
 
-from toolrot.faults import (
+from toolbreaker.faults import (
     truncate_json,
     rate_limit,
     payload_bomb,

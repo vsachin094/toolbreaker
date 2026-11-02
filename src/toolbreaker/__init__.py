@@ -10,4 +10,4 @@ from .faults import (
     server_fault,  # noqa: F401
 )
 from .interceptor import RotHarness  # noqa: F401
-from .plugin import toolrot  # noqa: F401
+from .plugin import toolbreaker  # noqa: F401

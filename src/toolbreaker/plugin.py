@@ -1,4 +1,4 @@
-"""Pytest plugin for toolrot chaos engineering."""
+"""Pytest plugin for toolbreaker chaos engineering."""
 
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ def pytest_addoption(parser: pytest.Parser) -> None:
 
 
 @pytest.fixture
-def toolrot(request: pytest.FixtureRequest) -> "RotHarness":
+def toolbreaker(request: pytest.FixtureRequest) -> "RotHarness":
     """Return a configured RotHarness seeded from --toolbreaker-seed (default 42)."""
     seed = request.config.getoption("--toolbreaker-seed")
     if seed is None:

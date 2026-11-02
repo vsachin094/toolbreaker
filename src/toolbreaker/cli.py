@@ -1,4 +1,4 @@
-"""Typer + Rich terminal CLI for toolrot."""
+"""Typer + Rich terminal CLI for toolbreaker."""
 
 import importlib
 
@@ -91,7 +91,7 @@ def demo() -> None:
             )
         )
 
-    table = Table(title="toolrot Demo: Agent Fault Tolerance")
+    table = Table(title="toolbreaker Demo: Agent Fault Tolerance")
     table.add_column("Tool", style="cyan", no_wrap=True)
     table.add_column("Injected Fault", style="magenta")
     table.add_column("Calls Made", style="green")
@@ -111,7 +111,7 @@ def run(target: str) -> None:
     try:
         module_name, func_name = target.split(":")
     except ValueError:
-        typer.echo("Usage: toolrot run <module:function>", err=True)
+        typer.echo("Usage: toolbreaker run <module:function>", err=True)
         raise typer.Exit(code=1)
 
     mod = importlib.import_module(module_name)

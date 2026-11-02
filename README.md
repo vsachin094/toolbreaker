@@ -2,7 +2,7 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/toolbreaker.svg)](https://pypi.org/project/toolbreaker/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![CI](https://github.com/vsachin094/toolrot/actions/workflows/ci.yml/badge.svg)](https://github.com/vsachin094/toolrot/actions/workflows/ci.yml)
+[![CI](https://github.com/vsachin094/toolbreaker/actions/workflows/ci.yml/badge.svg)](https://github.com/vsachin094/toolbreaker/actions/workflows/ci.yml)
 
 ## Why this exists
 
@@ -123,4 +123,4 @@ GitHub Actions runs `ruff check`, `ruff format --check`, and `pytest` on Python 
 
 ## License
 
-MIT.# toolrot
+MIT.# toolbreaker

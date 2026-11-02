@@ -1,8 +1,8 @@
-"""Tests for toolrot breaker circuit breaker and retry loop detection."""
+"""Tests for toolbreaker breaker circuit breaker and retry loop detection."""
 
 import pytest
 
-from toolrot.breaker import CallRecord, CircuitBreaker, AgentRetryLoopError
+from toolbreaker.breaker import CallRecord, CircuitBreaker, AgentRetryLoopError
 
 
 def test_call_record():
@@ -71,7 +71,7 @@ def test_circuit_breaker_max_total_calls():
 
 def test_normalize_hash():
     """Test hash normalization is deterministic."""
-    from toolrot.breaker import _hash_args
+    from toolbreaker.breaker import _hash_args
 
     hash1 = _hash_args(("arg1",), {"k": "v"})
     hash2 = _hash_args(("arg1",), {"k": "v"})

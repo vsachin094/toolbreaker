@@ -11,13 +11,13 @@ requires-python = ">=3.11"
 dependencies = ["pytest>=8.0", "typer>=0.12", "rich>=13.7"]
 
 [project.scripts]
-toolbreaker = "toolrot.cli:app"
+toolbreaker = "toolbreaker.cli:app"
 
 [project.entry-points.pytest11]
-toolbreaker = "toolrot.plugin"
+toolbreaker = "toolbreaker.plugin"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/toolrot"]
+packages = ["src/toolbreaker"]
 
 [tool.ruff]
 line-length = 88
@@ -25,7 +25,7 @@ lint.select = ["E", "F", "W"]
 
 [tool.pytest.ini_options]
 markers = [
-    "toolrot: toolrot chaos engineering tests",
+    "toolbreaker: toolbreaker chaos engineering tests",
 ]
 pythonpath = ["src"]
 testpaths = ["tests"]
