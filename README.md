@@ -1,8 +1,8 @@
-# `toolrot`
+# `toolbreaker`
 
-[![PyPI version](https://img.shields.io/pypi/v/toolrot.svg)](https://pypi.org/project/toolrot/)
+[![PyPI version](https://img.shields.io/pypi/v/toolbreaker.svg)](https://pypi.org/project/toolbreaker/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![CI](https://github.com/your-org/toolrot/actions/workflows/ci.yml/badge.svg)](https://github.com/your-org/toolrot/actions/workflows/ci.yml)
+[![CI](https://github.com/vsachin094/toolrot/actions/workflows/ci.yml/badge.svg)](https://github.com/vsachin094/toolrot/actions/workflows/ci.yml)
 
 ## Why this exists
 
@@ -10,7 +10,7 @@ AI agents don't fail gracefully. When an upstream tool returns truncated JSON, a
 
 We call this "tool rot": the silent degradation of agent reliability when external tools fail in realistic ways. Unit tests with 200 OK responses don't catch it. Integration tests against a live MCP server don't catch it either, because they pass until they don't.
 
-`toolrot` is a chaos-engineering harness and circuit breaker for AI agent tools. You wrap your tool functions (sync or async), inject realistic faults, and watch your agent fail — before it fails in production.
+`toolbreaker` is a chaos-engineering harness and circuit breaker for AI agent tools. You wrap your tool functions (sync or async), inject realistic faults, and watch your agent fail — before it fails in production.
 
 ## What it does
 
@@ -22,13 +22,13 @@ We call this "tool rot": the silent degradation of agent reliability when extern
 ## Install
 
 ```bash
-pip install toolrot
+pip install toolbreaker
 ```
 
 ## Quickstart
 
 ```bash
-toolrot demo
+toolbreaker demo
 ```
 
 This runs a zero-config simulation comparing a naive retry agent against a resilient one:
@@ -44,17 +44,17 @@ This runs a zero-config simulation comparing a naive retry agent against a resil
 
 ## Pytest plugin
 
-Add `--toolrot-seed` to any test run:
+Add `--toolbreaker-seed` to any test run:
 
 ```bash
-pytest --toolrot-seed=42
+pytest --toolbreaker-seed=42
 ```
 
-Use the `toolrot` fixture in your tests:
+Use the `toolbreaker` fixture in your tests:
 
 ```python
-def test_agent_handles_truncation(toolrot):
-    harness = toolrot  # RotHarness, seeded from --toolrot-seed (default 42)
+def test_agent_handles_truncation(toolbreaker):
+    harness = toolbreaker  # RotHarness, seeded from --toolbreaker-seed (default 42)
     wrapped_tool = harness.wrap(my_mcp_tool)
     result = wrapped_tool({"query": "users"})
     assert "error" in result or result is not None
@@ -63,13 +63,13 @@ def test_agent_handles_truncation(toolrot):
 If a test fails with `AgentRetryLoopError`, pytest appends a reproduction line:
 
 ```
-Reproduce with: pytest --toolrot-seed=42
+Reproduce with: pytest --toolbreaker-seed=42
 ```
 
 ## MCP wrapper example
 
 ```python
-from toolrot import RotHarness, truncate_json, rate_limit
+from toolbreaker import RotHarness, truncate_json, rate_limit
 
 def call_tool(name: str, arguments: dict):
     # your MCP dispatch logic
@@ -84,18 +84,18 @@ wrapped = harness.wrap_mcp(call_tool)
 
 `wrap_mcp` accepts a single `call_tool(name, arguments)` function or a dict of `{tool_name: callable}`.
 
-## CLI: `toolrot run`
+## CLI: `toolbreaker run`
 
 Inspect how your function's output mutates under every built-in fault:
 
 ```bash
-toolrot run my_module:my_function
+toolbreaker run my_module:my_function
 ```
 
 ## API
 
 ```python
-from toolrot import (
+from toolbreaker import (
     RotHarness,
     CircuitBreaker,
     AgentRetryLoopError,
