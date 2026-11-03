@@ -72,9 +72,11 @@ Reproduce with: pytest --toolbreaker-seed=42
 ```python
 from toolbreaker import RotHarness, truncate_json, rate_limit
 
+
 def call_tool(name: str, arguments: dict):
     # your MCP dispatch logic
     ...
+
 
 harness = RotHarness(
     faults=[truncate_json(ratio=0.5), rate_limit(retry_after=30)],
