@@ -27,9 +27,13 @@ jobs:
       - name: Build package
         run: python -m build
 
-      - name: Configure PyPI authentication
+      - name: Configure PyPI token authentication
         run: |
           echo "${{ secrets.PYPI_API_TOKEN }}" | python -m pip config set pypi.token __token__ || true
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@v2
+        with:
+          # Use token authentication instead of trusted publisher
+          password: "${{ secrets.PYPI_API_TOKEN }}"
+          username: "__token__"
