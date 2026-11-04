@@ -34,6 +34,6 @@ jobs:
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@v1
         with:
-          # Use token authentication instead of trusted publisher
+          # Use token authentication instead of trusted publishers
           password: "${{ secrets.PYPI_API_TOKEN }}"
           username: "__token__"
